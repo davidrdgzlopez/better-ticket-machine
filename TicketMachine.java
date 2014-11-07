@@ -1,4 +1,4 @@
-/**
+ /**
  * TicketMachine models a ticket machine that issues
  * flat-fare tickets.
  * The price of a ticket is specified via the constructor.
@@ -51,10 +51,12 @@ public class TicketMachine
      */
     public void insertMoney(int amount)
     {
-        if(amount > 0) {
+        if(amount > 0) 
+        {
             balance = balance + amount;
         }
-        else {
+        else 
+        {
             System.out.println("Use a positive amount rather than: " +
                                amount);
         }
@@ -67,7 +69,8 @@ public class TicketMachine
      */
     public void printTicket()
     {
-        if(balance >= price) {
+        if(balance >= price) 
+        {
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
@@ -81,7 +84,8 @@ public class TicketMachine
             // Reduce the balance by the prince.
             balance = balance - price;
         }
-        else {
+        else 
+        {
             System.out.println("You must insert at least: " +
                                (price - balance) + " more cents.");
                     
@@ -98,5 +102,16 @@ public class TicketMachine
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
+    }
+    
+    /**
+     * Devuelve el dinero que hace falta meter
+     * para poder imprimir el ticket
+     */
+    public int getAmountLeftRoPay()
+    {
+        int amountLeftToPay;
+        amountLeftToPay = price - balance;
+        return amountLeftToPay;
     }
 }
