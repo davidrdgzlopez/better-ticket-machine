@@ -86,8 +86,14 @@ public class TicketMachine
         }
         else 
         {
+            /**
+             * Creamos la variable local amountLeftToPay e
+             * indicamos a qué se corresponde; en este caso:
+             * el precio del billete menos el precio introducido
+             */
+            int amountLeftToPay = price - balance; 
             System.out.println("You must insert at least: " +
-                               (price - balance) + " more cents.");
+                               (amountLeftToPay) + " more cents.");
                     
         }
     }
