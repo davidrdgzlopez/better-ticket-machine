@@ -114,4 +114,16 @@ public class TicketMachine
         amountLeftToPay = price - balance;
         return amountLeftToPay;
     }
+    
+    /**
+     * Vacía la máquina y devuelve la cantidad de dinero que había
+     * en la máquina
+     */
+    public int emptyMachine()
+    {
+        int amountToRefund;
+        amountToRefund = total;
+        total = 0;
+        return amountToRefund;
+    }
 }
