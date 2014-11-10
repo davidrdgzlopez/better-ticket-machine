@@ -17,6 +17,8 @@ public class TicketMachine
     private double balance;
     // The total amount of money collected by this machine.
     private double total;
+    //The price of a ticket from this machine with discount
+    private double discountPrice;
 
     /**
      * Create a machine that issues tickets of the given price.
@@ -24,6 +26,7 @@ public class TicketMachine
     public TicketMachine(double cost)
     {
         price = cost;
+        discountPrice = price * 90 / 100;
         balance = 0;
         total = 0;
     }
@@ -105,22 +108,20 @@ public class TicketMachine
      */
     public void printTicketReduction()
     {
-        double newPrice;
-        newPrice = (price*90)/100;
-        if(balance >= newPrice)
+        if(balance >= discountPrice)
         { 
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
             System.out.println("# Ticket");
-            System.out.println("# " + newPrice + " cents.");
+            System.out.println("# " + discountPrice + " cents.");
             System.out.println("##################");
             System.out.println();
 
             // Update the total collected with the price.
-            total = total + newPrice;
+            total = total + discountPrice;
             // Reduce the balance by the prince.
-            balance = balance - newPrice;
+            balance = balance - discountPrice;
         }
         else 
         {
@@ -129,7 +130,7 @@ public class TicketMachine
              * indicamos a qué se corresponde; en este caso:
              * el precio del billete menos el precio introducido
              */
-            double amountLeftToPay = newPrice - balance; 
+            double amountLeftToPay = discountPrice - balance; 
             System.out.println("You must insert at least: " +
                                (amountLeftToPay) + " more cents.");
                     
