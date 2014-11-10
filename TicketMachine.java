@@ -23,10 +23,10 @@ public class TicketMachine
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(double cost)
+    public TicketMachine(double cost, int percentageDiscount)
     {
         price = cost;
-        discountPrice = price * 90 / 100;
+        discountPrice = price - (price * percentageDiscount / 100);
         balance = 0;
         total = 0;
     }
