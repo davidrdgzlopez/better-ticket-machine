@@ -12,16 +12,16 @@
 public class TicketMachine
 {
     // The price of a ticket from this machine.
-    private int price;
+    private double price;
     // The amount of money entered by a customer so far.
-    private int balance;
+    private double balance;
     // The total amount of money collected by this machine.
-    private int total;
+    private double total;
 
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(int cost)
+    public TicketMachine(double cost)
     {
         price = cost;
         balance = 0;
@@ -31,7 +31,7 @@ public class TicketMachine
     /**
      * @Return The price of a ticket.
      */
-    public int getPrice()
+    public double getPrice()
     {
         return price;
     }
@@ -40,7 +40,7 @@ public class TicketMachine
      * Return The amount of money already inserted for the
      * next ticket.
      */
-    public int getBalance()
+    public double getBalance()
     {
         return balance;
     }
@@ -49,7 +49,7 @@ public class TicketMachine
      * Receive an amount of money from a customer.
      * Check that the amount is sensible.
      */
-    public void insertMoney(int amount)
+    public void insertMoney(double amount)
     {
         if(amount > 0) 
         {
@@ -91,7 +91,45 @@ public class TicketMachine
              * indicamos a qué se corresponde; en este caso:
              * el precio del billete menos el precio introducido
              */
-            int amountLeftToPay = price - balance; 
+            double amountLeftToPay = price - balance; 
+            System.out.println("You must insert at least: " +
+                               (amountLeftToPay) + " more cents.");
+                    
+        }
+    }
+    
+    /**
+     * Print a ticket reduction if enough money has been inserted, and
+     * reduce the current balance by the ticket price. Print
+     * an error message if more money is required.
+     */
+    public void printTicketReduction()
+    {
+        double newPrice;
+        newPrice = (price*90)/100;
+        if(balance >= newPrice)
+        { 
+            // Simulate the printing of a ticket.
+            System.out.println("##################");
+            System.out.println("# The BlueJ Line");
+            System.out.println("# Ticket");
+            System.out.println("# " + newPrice + " cents.");
+            System.out.println("##################");
+            System.out.println();
+
+            // Update the total collected with the price.
+            total = total + newPrice;
+            // Reduce the balance by the prince.
+            balance = balance - newPrice;
+        }
+        else 
+        {
+            /**
+             * Creamos la variable local amountLeftToPay e
+             * indicamos a qué se corresponde; en este caso:
+             * el precio del billete menos el precio introducido
+             */
+            double amountLeftToPay = newPrice - balance; 
             System.out.println("You must insert at least: " +
                                (amountLeftToPay) + " more cents.");
                     
@@ -102,9 +140,9 @@ public class TicketMachine
      * Return the money in the balance.
      * The balance is cleared.
      */
-    public int refundBalance()
+    public double refundBalance()
     {
-        int amountToRefund;
+        double amountToRefund;
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
@@ -114,9 +152,9 @@ public class TicketMachine
      * Devuelve el dinero que hace falta meter
      * para poder imprimir el ticket
      */
-    public int getAmountLeftRoPay()
+    public double getAmountLeftToPay()
     {
-        int amountLeftToPay;
+        double amountLeftToPay;
         amountLeftToPay = price - balance;
         return amountLeftToPay;
     }
@@ -125,9 +163,9 @@ public class TicketMachine
      * Vacía la máquina y devuelve la cantidad de dinero que había
      * en la máquina
      */
-    public int emptyMachine()
+    public double emptyMachine()
     {
-        int amountToRefund;
+        double amountToRefund;
         amountToRefund = total;
         total = 0;
         return amountToRefund;
