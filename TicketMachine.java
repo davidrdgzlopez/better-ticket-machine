@@ -19,15 +19,18 @@ public class TicketMachine
     private double total;
     //The price of a ticket from this machine with discount
     private double discountPrice;
+    //This ticket could be discounted or not
+    private boolean discountTicket;
 
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(double cost, int percentageDiscount)
+    public TicketMachine(double cost, int percentageDiscount, boolean discountAviable)
     {
         price = cost;
         discountPrice = price - (price * percentageDiscount / 100);
         balance = 0;
+        discountTicket = discountAviable;
         total = 0;
     }
 
@@ -64,16 +67,16 @@ public class TicketMachine
                                amount);
         }
     }
-
+    
     /**
-     * Print a ticket if enough money has been inserted, and
+     * Print a ticket reduction if enough money has been inserted, and
      * reduce the current balance by the ticket price. Print
      * an error message if more money is required.
      */
     public void printTicket()
     {
-        if(balance >= price) 
-        {
+        if(balance >= discountPrice)
+        { 
             // Simulate the printing of a ticket.
             System.out.println("##################");
             System.out.println("# The BlueJ Line");
@@ -106,9 +109,11 @@ public class TicketMachine
      * reduce the current balance by the ticket price. Print
      * an error message if more money is required.
      */
-    public void printTicketReduction()
+    public void printTicketWithDiscount()
     {
-        if(balance >= discountPrice)
+        if(discountTicket==true)
+        {
+            if(balance >= discountPrice)
         { 
             // Simulate the printing of a ticket.
             System.out.println("##################");
@@ -134,6 +139,13 @@ public class TicketMachine
             System.out.println("You must insert at least: " +
                                (amountLeftToPay) + " more cents.");
                     
+        }
+        }
+        else
+        {
+            System.out.println("##################");
+            System.out.println("You can't print a ticket with no discount aviable");
+            System.out.println("##################");
         }
     }
 
