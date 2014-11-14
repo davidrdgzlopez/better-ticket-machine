@@ -25,12 +25,12 @@ public class TicketMachine
     /**
      * Create a machine that issues tickets of the given price.
      */
-    public TicketMachine(double cost, int percentageDiscount, boolean discountAviable)
+    public TicketMachine(double cost, int percentageDiscount, boolean aviableDiscount)
     {
         price = cost;
         discountPrice = price - (price * percentageDiscount / 100);
         balance = 0;
-        discountTicket = discountAviable;
+        discountTicket = aviableDiscount;
         total = 0;
     }
 
@@ -114,32 +114,31 @@ public class TicketMachine
         if(discountTicket==true)
         {
             if(balance >= discountPrice)
-        { 
-            // Simulate the printing of a ticket.
-            System.out.println("##################");
-            System.out.println("# The BlueJ Line");
-            System.out.println("# Ticket");
-            System.out.println("# " + discountPrice + " cents.");
-            System.out.println("##################");
-            System.out.println();
-
-            // Update the total collected with the price.
-            total = total + discountPrice;
-            // Reduce the balance by the prince.
-            balance = balance - discountPrice;
-        }
-        else 
-        {
-            /**
-             * Creamos la variable local amountLeftToPay e
-             * indicamos a qué se corresponde; en este caso:
-             * el precio del billete menos el precio introducido
-             */
-            double amountLeftToPay = discountPrice - balance; 
-            System.out.println("You must insert at least: " +
-                               (amountLeftToPay) + " more cents.");
-                    
-        }
+            { 
+                // Simulate the printing of a ticket.
+                System.out.println("##################");
+                System.out.println("# The BlueJ Line");
+                System.out.println("# Ticket");
+                System.out.println("# " + discountPrice + " cents.");
+                System.out.println("##################");
+                System.out.println();
+    
+                // Update the total collected with the price.
+                total = total + discountPrice;
+                // Reduce the balance by the prince.
+                balance = balance - discountPrice;
+            }
+            else 
+            {
+                /**
+                 * Creamos la variable local amountLeftToPay e
+                 * indicamos a qué se corresponde; en este caso:
+                 * el precio del billete menos el precio introducido
+                 */
+                double amountLeftToPay = discountPrice - balance; 
+                System.out.println("You must insert at least: " +
+                                   (amountLeftToPay) + " more cents.");    
+            }
         }
         else
         {
